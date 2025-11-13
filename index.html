@@ -3,97 +3,652 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>김세은 - 포트폴리오</title>
+    <title>김세은 | Brand Designer Portfolio</title>
     <style>
+        /* ========== 기본 스타일 ========== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        :root {
+            /* 얼스톤 컬러 팔레트 */
+            --primary: #8B7355;
+            --secondary: #C4A77D;
+            --light: #E8DCC4;
+            --background: #F5F0E8;
+            --text-dark: #3d3229;
+            --text-light: #6b5d51;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--background);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ========== 네비게이션 ========== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(245, 240, 232, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(139, 115, 85, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
             display: flex;
             justify-content: center;
-            align-items: center;
+            gap: 3rem;
         }
 
-        .container {
-            text-align: center;
-            background: white;
-            padding: 80px 60px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            animation: fadeIn 1s ease-in;
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+            position: relative;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* 미니멀 서틀 인터랙션 - 네비게이션 */
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* ========== 섹션 공통 스타일 ========== */
+        section {
+            padding: 5rem 10%;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         h1 {
-            font-size: 4rem;
-            color: #333;
-            margin-bottom: 30px;
+            font-size: 3.5rem;
             font-weight: 700;
-            letter-spacing: -2px;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        /* ========== 히어로 섹션 ========== */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px;
         }
 
         .subtitle {
-            font-size: 0.9rem;
-            color: #999;
+            font-size: 1.3rem;
+            color: var(--text-light);
             letter-spacing: 3px;
-            font-weight: 500;
-            margin-bottom: 15px;
+            margin-bottom: 1rem;
             text-transform: uppercase;
         }
 
-        .profile-img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 30px;
-            border: 5px solid #f0f0f0;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin-top: 2rem;
+            line-height: 1.8;
         }
 
-        p {
+        .cta-button {
+            display: inline-block;
+            margin-top: 3rem;
+            padding: 1rem 3rem;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        /* 미니멀 서틀 인터랙션 - CTA 버튼 */
+        .cta-button:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 115, 85, 0.3);
+        }
+
+        /* ========== About 섹션 ========== */
+        #about {
+            background-color: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(139, 115, 85, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        /* 미니멀 서틀 인터랙션 - 이미지 */
+        .about-image:hover {
+            transform: scale(1.02);
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        /* ========== Skills 섹션 ========== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(139, 115, 85, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        /* 미니멀 서틀 인터랙션 - 스킬 카드 */
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(139, 115, 85, 0.2);
+            background-color: var(--light);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-name {
             font-size: 1.3rem;
-            color: #666;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-description {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* ========== Projects 섹션 ========== */
+        #projects {
+            background-color: white;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .project-card {
+            background-color: var(--background);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(139, 115, 85, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        /* 미니멀 서틀 인터랙션 - 프로젝트 카드 */
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(139, 115, 85, 0.25);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .project-info {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .project-description {
+            color: var(--text-light);
             line-height: 1.6;
         }
 
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        /* ========== Contact 섹션 ========== */
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            margin: 3rem 0;
+        }
+
+        .contact-item {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin: 1rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item:hover {
+            color: var(--primary);
+        }
+
+        .contact-item a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        /* 미니멀 서틀 인터랙션 - 소셜 링크 */
+        .social-link:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        /* ========== Footer ========== */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.95rem;
+        }
+
+        footer a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        /* ========== 반응형 디자인 ========== */
         @media (max-width: 768px) {
-            .container {
-                padding: 60px 40px;
+            nav ul {
+                gap: 1.5rem;
+                font-size: 0.9rem;
             }
-            
+
             h1 {
                 font-size: 2.5rem;
             }
-            
-            p {
-                font-size: 1.1rem;
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 3rem 5%;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="images/다운로드.jpg" alt="김세은 프로필 사진" class="profile-img">
-        <p class="subtitle">BRAND DESIGNER</p>
-        <h1>김세은</h1>
-        <p>고객이 한번에 알아볼 수 있으며 현대 사회인들의 니즈에 맞는 디자인을 하는 디자이너입니다.</p>
-    </div>
+    <!-- 네비게이션 -->
+    <nav>
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- 히어로 섹션 -->
+    <section id="hero">
+        <p class="subtitle">Brand Designer</p>
+        <h1>김세은<br>Seeun Kim</h1>
+        <p class="hero-description">
+            한 번에 알 수 있는 현대 사회인들의 니즈에 맞는<br>
+            디자인을 하는 디자이너입니다.
+        </p>
+        <a href="#projects" class="cta-button">프로젝트 보기</a>
+    </section>
+
+    <!-- About 섹션 -->
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <img src="https://via.placeholder.com/500x600/8B7355/FFFFFF?text=Seeun+Kim" alt="김세은" class="about-image">
+            <div class="about-text">
+                <h3>안녕하세요, 브랜드 디자이너 김세은입니다.</h3>
+                <p>
+                    저는 브랜드의 본질을 이해하고, 그것을 시각적으로 명확하게 전달하는 것에 집중합니다. 
+                    복잡한 메시지를 단순하게 정리하여, 타겟 오디언스가 한눈에 이해할 수 있는 디자인을 추구합니다.
+                </p>
+                <p>
+                    현대 사회인들의 바쁜 일상 속에서도 빠르게 인식되고 기억에 남는 브랜드 아이덴티티를 만들어내는 것이 저의 강점입니다.
+                    사용자 경험과 브랜드 가치가 조화를 이루는 디자인을 통해 비즈니스 목표 달성에 기여하고자 합니다.
+                </p>
+                <p>
+                    각 프로젝트마다 클라이언트와의 깊은 소통을 통해 브랜드의 고유한 스토리를 발견하고, 
+                    그것을 시각적 언어로 풀어내는 작업을 즐깁니다.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills 섹션 -->
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🎨</div>
+                <div class="skill-name">Brand Identity</div>
+                <p class="skill-description">로고, 컬러 팔레트, 타이포그래피 등 브랜드의 시각적 정체성을 구축합니다.</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📱</div>
+                <div class="skill-name">UI/UX Design</div>
+                <p class="skill-description">사용자 중심의 직관적이고 매력적인 인터페이스를 디자인합니다.</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📐</div>
+                <div class="skill-name">Graphic Design</div>
+                <p class="skill-description">포스터, 브로슈어, 패키지 등 다양한 그래픽 매체를 디자인합니다.</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">💡</div>
+                <div class="skill-name">Creative Strategy</div>
+                <p class="skill-description">브랜드 목표에 맞는 창의적인 전략과 콘셉트를 개발합니다.</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🖥️</div>
+                <div class="skill-name">Adobe Creative Suite</div>
+                <p class="skill-description">Photoshop, Illustrator, InDesign 등의 툴을 능숙하게 다룹니다.</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎯</div>
+                <div class="skill-name">Marketing Design</div>
+                <p class="skill-description">마케팅 목표를 달성하는 효과적인 비주얼 커뮤니케이션을 제공합니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects 섹션 -->
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <img src="https://via.placeholder.com/400x300/C4A77D/FFFFFF?text=Brand+Identity" alt="프로젝트 1" class="project-image">
+                <div class="project-info">
+                    <h3 class="project-title">어반 카페 브랜딩</h3>
+                    <p class="project-description">
+                        도심 속 자연을 테마로 한 카페의 전체 브랜드 아이덴티티를 구축했습니다. 
+                        로고, 메뉴판, 패키지, 인테리어 가이드까지 일관된 브랜드 경험을 제공합니다.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Brand Identity</span>
+                        <span class="tag">Logo Design</span>
+                        <span class="tag">Package</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="https://via.placeholder.com/400x300/8B7355/FFFFFF?text=Mobile+App" alt="프로젝트 2" class="project-image">
+                <div class="project-info">
+                    <h3 class="project-title">웰니스 앱 UI/UX</h3>
+                    <p class="project-description">
+                        바쁜 현대인을 위한 5분 명상 앱의 UI/UX를 디자인했습니다. 
+                        미니멀한 인터페이스로 사용자가 쉽게 집중할 수 있는 경험을 제공합니다.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">UI/UX</span>
+                        <span class="tag">Mobile App</span>
+                        <span class="tag">Wellness</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="https://via.placeholder.com/400x300/E8DCC4/8B7355?text=E-commerce" alt="프로젝트 3" class="project-image">
+                <div class="project-info">
+                    <h3 class="project-title">천연 화장품 브랜드</h3>
+                    <p class="project-description">
+                        자연주의를 추구하는 화장품 브랜드의 비주얼 아이덴티티와 이커머스 웹사이트를 디자인했습니다. 
+                        제품의 가치를 효과적으로 전달하는 클린한 디자인을 구현했습니다.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Web Design</span>
+                        <span class="tag">E-commerce</span>
+                        <span class="tag">Branding</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="https://via.placeholder.com/400x300/C4A77D/FFFFFF?text=Editorial" alt="프로젝트 4" class="project-image">
+                <div class="project-info">
+                    <h3 class="project-title">라이프스타일 매거진</h3>
+                    <p class="project-description">
+                        계간 라이프스타일 매거진의 편집 디자인을 담당했습니다. 
+                        가독성과 미적 감각을 모두 고려한 레이아웃으로 독자들에게 편안한 읽기 경험을 제공합니다.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Editorial</span>
+                        <span class="tag">Typography</span>
+                        <span class="tag">Layout</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact 섹션 -->
+    <section id="contact">
+        <h2>Contact</h2>
+        <div class="contact-content">
+            <p style="font-size: 1.2rem; color: var(--text-light); margin-bottom: 2rem;">
+                새로운 프로젝트나 협업 기회가 있으시다면<br>
+                언제든지 연락 주세요.
+            </p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <strong>Email:</strong> <a href="mailto:seeun.kim@example.com">seeun.kim@example.com</a>
+                </div>
+                <div class="contact-item">
+                    <strong>Phone:</strong> +82 10-1234-5678
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="https://instagram.com" target="_blank" class="social-link" title="Instagram">📷</a>
+                <a href="https://behance.net" target="_blank" class="social-link" title="Behance">🎨</a>
+                <a href="https://linkedin.com" target="_blank" class="social-link" title="LinkedIn">💼</a>
+                <a href="https://dribbble.com" target="_blank" class="social-link" title="Dribbble">🏀</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 김세은. Powered by <a href="https://ai.triz.kr" target="_blank">AI Portfolio Workshop</a>.</p>
+    </footer>
+
+    <script>
+        // 부드러운 스크롤 효과
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 스크롤 시 네비게이션 활성화
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.color = '';
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.style.color = 'var(--primary)';
+                }
+            });
+        });
+
+        // 페이지 로드 시 페이드인 효과
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
 </body>
 </html>
